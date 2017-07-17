@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.dfbase.mapper.SysPostionPermitMapper" >
+  <resultMap id="BaseResultMap" type="org.dfbase.entity.SysPostionPermit" >
+    <id column="POS_ID" property="posId" jdbcType="BIGINT" />
+    <id column="PER_ID" property="perId" jdbcType="BIGINT" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="BIGINT" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="BIGINT" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    POS_ID, PER_ID, CREATE_DATE, UPDATE_DATE, CREATE_BY, UPDATE_BY, DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.dfbase.entity.SysPostionPermitKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_postion_permit
+    where POS_ID = #{posId,jdbcType=BIGINT}
+      and PER_ID = #{perId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.dfbase.entity.SysPostionPermitKey" >
+    delete from sys_postion_permit
+    where POS_ID = #{posId,jdbcType=BIGINT}
+      and PER_ID = #{perId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.dfbase.entity.SysPostionPermit" >
+    insert into sys_postion_permit (POS_ID, PER_ID, CREATE_DATE, 
+      UPDATE_DATE, CREATE_BY, UPDATE_BY, 
+      DEL_FLAG)
+    values (#{posId,jdbcType=BIGINT}, #{perId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.dfbase.entity.SysPostionPermit" >
+    insert into sys_postion_permit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="posId != null" >
+        POS_ID,
+      </if>
+      <if test="perId != null" >
+        PER_ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="posId != null" >
+        #{posId,jdbcType=BIGINT},
+      </if>
+      <if test="perId != null" >
+        #{perId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.dfbase.entity.SysPostionPermit" >
+    update sys_postion_permit
+    <set >
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where POS_ID = #{posId,jdbcType=BIGINT}
+      and PER_ID = #{perId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.dfbase.entity.SysPostionPermit" >
+    update sys_postion_permit
+    set CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=BIGINT},
+      UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      DEL_FLAG = #{delFlag,jdbcType=INTEGER}
+    where POS_ID = #{posId,jdbcType=BIGINT}
+      and PER_ID = #{perId,jdbcType=BIGINT}
+  </update>
+</mapper>

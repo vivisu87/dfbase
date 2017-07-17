@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.dfbase.mapper.SysCompanyMapper" >
+  <resultMap id="BaseResultMap" type="org.dfbase.entity.SysCompany" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="FULL_NAME" property="fullName" jdbcType="VARCHAR" />
+    <result column="ABBR_NAME" property="abbrName" jdbcType="VARCHAR" />
+    <result column="CORPORATE" property="corporate" jdbcType="VARCHAR" />
+    <result column="BUS_LICENCE" property="busLicence" jdbcType="VARCHAR" />
+    <result column="BUS_IMAGE" property="busImage" jdbcType="VARCHAR" />
+    <result column="TAX_NUMBER" property="taxNumber" jdbcType="VARCHAR" />
+    <result column="TRADE" property="trade" jdbcType="VARCHAR" />
+    <result column="REGION" property="region" jdbcType="VARCHAR" />
+    <result column="BUS_SCOPE" property="busScope" jdbcType="VARCHAR" />
+    <result column="COMPANY_CODE" property="companyCode" jdbcType="VARCHAR" />
+    <result column="REG_ADDRESS" property="regAddress" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_MOBILE" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="CONTACT_QQ" property="contactQq" jdbcType="VARCHAR" />
+    <result column="CONTACT_WECHAT" property="contactWechat" jdbcType="VARCHAR" />
+    <result column="CONTACT_MAIL" property="contactMail" jdbcType="VARCHAR" />
+    <result column="CONTACT_ADDRESS" property="contactAddress" jdbcType="VARCHAR" />
+    <result column="CONTACT_POSTCODE" property="contactPostcode" jdbcType="VARCHAR" />
+    <result column="CONTACT_CERTIFICATE_NO" property="contactCertificateNo" jdbcType="VARCHAR" />
+    <result column="CONTACT_CERTIFICATE_TYPE" property="contactCertificateType" jdbcType="VARCHAR" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="BIGINT" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="BIGINT" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FULL_NAME, ABBR_NAME, CORPORATE, BUS_LICENCE, BUS_IMAGE, TAX_NUMBER, TRADE, REGION, 
+    BUS_SCOPE, COMPANY_CODE, REG_ADDRESS, CONTACT_NAME, CONTACT_MOBILE, CONTACT_PHONE, 
+    CONTACT_QQ, CONTACT_WECHAT, CONTACT_MAIL, CONTACT_ADDRESS, CONTACT_POSTCODE, CONTACT_CERTIFICATE_NO, 
+    CONTACT_CERTIFICATE_TYPE, REMARKS, CREATE_DATE, UPDATE_DATE, CREATE_BY, UPDATE_BY, 
+    DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_company
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_company
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.dfbase.entity.SysCompany" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_company (FULL_NAME, ABBR_NAME, CORPORATE, 
+      BUS_LICENCE, BUS_IMAGE, TAX_NUMBER, 
+      TRADE, REGION, BUS_SCOPE, 
+      COMPANY_CODE, REG_ADDRESS, CONTACT_NAME, 
+      CONTACT_MOBILE, CONTACT_PHONE, CONTACT_QQ, 
+      CONTACT_WECHAT, CONTACT_MAIL, CONTACT_ADDRESS, 
+      CONTACT_POSTCODE, CONTACT_CERTIFICATE_NO, 
+      CONTACT_CERTIFICATE_TYPE, REMARKS, CREATE_DATE, 
+      UPDATE_DATE, CREATE_BY, UPDATE_BY, 
+      DEL_FLAG)
+    values (#{fullName,jdbcType=VARCHAR}, #{abbrName,jdbcType=VARCHAR}, #{corporate,jdbcType=VARCHAR}, 
+      #{busLicence,jdbcType=VARCHAR}, #{busImage,jdbcType=VARCHAR}, #{taxNumber,jdbcType=VARCHAR}, 
+      #{trade,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{busScope,jdbcType=VARCHAR}, 
+      #{companyCode,jdbcType=VARCHAR}, #{regAddress,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactMobile,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactQq,jdbcType=VARCHAR}, 
+      #{contactWechat,jdbcType=VARCHAR}, #{contactMail,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR}, 
+      #{contactPostcode,jdbcType=VARCHAR}, #{contactCertificateNo,jdbcType=VARCHAR}, 
+      #{contactCertificateType,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.dfbase.entity.SysCompany" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fullName != null" >
+        FULL_NAME,
+      </if>
+      <if test="abbrName != null" >
+        ABBR_NAME,
+      </if>
+      <if test="corporate != null" >
+        CORPORATE,
+      </if>
+      <if test="busLicence != null" >
+        BUS_LICENCE,
+      </if>
+      <if test="busImage != null" >
+        BUS_IMAGE,
+      </if>
+      <if test="taxNumber != null" >
+        TAX_NUMBER,
+      </if>
+      <if test="trade != null" >
+        TRADE,
+      </if>
+      <if test="region != null" >
+        REGION,
+      </if>
+      <if test="busScope != null" >
+        BUS_SCOPE,
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE,
+      </if>
+      <if test="regAddress != null" >
+        REG_ADDRESS,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="contactMobile != null" >
+        CONTACT_MOBILE,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="contactQq != null" >
+        CONTACT_QQ,
+      </if>
+      <if test="contactWechat != null" >
+        CONTACT_WECHAT,
+      </if>
+      <if test="contactMail != null" >
+        CONTACT_MAIL,
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS,
+      </if>
+      <if test="contactPostcode != null" >
+        CONTACT_POSTCODE,
+      </if>
+      <if test="contactCertificateNo != null" >
+        CONTACT_CERTIFICATE_NO,
+      </if>
+      <if test="contactCertificateType != null" >
+        CONTACT_CERTIFICATE_TYPE,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="abbrName != null" >
+        #{abbrName,jdbcType=VARCHAR},
+      </if>
+      <if test="corporate != null" >
+        #{corporate,jdbcType=VARCHAR},
+      </if>
+      <if test="busLicence != null" >
+        #{busLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="busImage != null" >
+        #{busImage,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNumber != null" >
+        #{taxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="busScope != null" >
+        #{busScope,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null" >
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWechat != null" >
+        #{contactWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMail != null" >
+        #{contactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPostcode != null" >
+        #{contactPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactCertificateNo != null" >
+        #{contactCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactCertificateType != null" >
+        #{contactCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.dfbase.entity.SysCompany" >
+    update sys_company
+    <set >
+      <if test="fullName != null" >
+        FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="abbrName != null" >
+        ABBR_NAME = #{abbrName,jdbcType=VARCHAR},
+      </if>
+      <if test="corporate != null" >
+        CORPORATE = #{corporate,jdbcType=VARCHAR},
+      </if>
+      <if test="busLicence != null" >
+        BUS_LICENCE = #{busLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="busImage != null" >
+        BUS_IMAGE = #{busImage,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNumber != null" >
+        TAX_NUMBER = #{taxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        TRADE = #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        REGION = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="busScope != null" >
+        BUS_SCOPE = #{busScope,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        COMPANY_CODE = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null" >
+        REG_ADDRESS = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        CONTACT_MOBILE = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        CONTACT_QQ = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWechat != null" >
+        CONTACT_WECHAT = #{contactWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMail != null" >
+        CONTACT_MAIL = #{contactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPostcode != null" >
+        CONTACT_POSTCODE = #{contactPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactCertificateNo != null" >
+        CONTACT_CERTIFICATE_NO = #{contactCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactCertificateType != null" >
+        CONTACT_CERTIFICATE_TYPE = #{contactCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.dfbase.entity.SysCompany" >
+    update sys_company
+    set FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      ABBR_NAME = #{abbrName,jdbcType=VARCHAR},
+      CORPORATE = #{corporate,jdbcType=VARCHAR},
+      BUS_LICENCE = #{busLicence,jdbcType=VARCHAR},
+      BUS_IMAGE = #{busImage,jdbcType=VARCHAR},
+      TAX_NUMBER = #{taxNumber,jdbcType=VARCHAR},
+      TRADE = #{trade,jdbcType=VARCHAR},
+      REGION = #{region,jdbcType=VARCHAR},
+      BUS_SCOPE = #{busScope,jdbcType=VARCHAR},
+      COMPANY_CODE = #{companyCode,jdbcType=VARCHAR},
+      REG_ADDRESS = #{regAddress,jdbcType=VARCHAR},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      CONTACT_MOBILE = #{contactMobile,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      CONTACT_QQ = #{contactQq,jdbcType=VARCHAR},
+      CONTACT_WECHAT = #{contactWechat,jdbcType=VARCHAR},
+      CONTACT_MAIL = #{contactMail,jdbcType=VARCHAR},
+      CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      CONTACT_POSTCODE = #{contactPostcode,jdbcType=VARCHAR},
+      CONTACT_CERTIFICATE_NO = #{contactCertificateNo,jdbcType=VARCHAR},
+      CONTACT_CERTIFICATE_TYPE = #{contactCertificateType,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=BIGINT},
+      UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      DEL_FLAG = #{delFlag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

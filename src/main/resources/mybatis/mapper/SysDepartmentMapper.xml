@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.dfbase.mapper.SysDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="org.dfbase.entity.SysDepartment" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="DEP_NAME" property="depName" jdbcType="VARCHAR" />
+    <result column="COMP_ID" property="compId" jdbcType="BIGINT" />
+    <result column="COMP_FULL_NAME" property="compFullName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="DEP_ORDER" property="depOrder" jdbcType="INTEGER" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="BIGINT" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="BIGINT" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DEP_NAME, COMP_ID, COMP_FULL_NAME, PARENT_ID, DEP_ORDER, REMARKS, CREATE_DATE, 
+    UPDATE_DATE, CREATE_BY, UPDATE_BY, DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_department
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_department
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.dfbase.entity.SysDepartment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_department (DEP_NAME, COMP_ID, COMP_FULL_NAME, 
+      PARENT_ID, DEP_ORDER, REMARKS, 
+      CREATE_DATE, UPDATE_DATE, CREATE_BY, 
+      UPDATE_BY, DEL_FLAG)
+    values (#{depName,jdbcType=VARCHAR}, #{compId,jdbcType=BIGINT}, #{compFullName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{depOrder,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
+      #{updateBy,jdbcType=BIGINT}, #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.dfbase.entity.SysDepartment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depName != null" >
+        DEP_NAME,
+      </if>
+      <if test="compId != null" >
+        COMP_ID,
+      </if>
+      <if test="compFullName != null" >
+        COMP_FULL_NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="depOrder != null" >
+        DEP_ORDER,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depName != null" >
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="compId != null" >
+        #{compId,jdbcType=BIGINT},
+      </if>
+      <if test="compFullName != null" >
+        #{compFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="depOrder != null" >
+        #{depOrder,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.dfbase.entity.SysDepartment" >
+    update sys_department
+    <set >
+      <if test="depName != null" >
+        DEP_NAME = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="compId != null" >
+        COMP_ID = #{compId,jdbcType=BIGINT},
+      </if>
+      <if test="compFullName != null" >
+        COMP_FULL_NAME = #{compFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="depOrder != null" >
+        DEP_ORDER = #{depOrder,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.dfbase.entity.SysDepartment" >
+    update sys_department
+    set DEP_NAME = #{depName,jdbcType=VARCHAR},
+      COMP_ID = #{compId,jdbcType=BIGINT},
+      COMP_FULL_NAME = #{compFullName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      DEP_ORDER = #{depOrder,jdbcType=INTEGER},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=BIGINT},
+      UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      DEL_FLAG = #{delFlag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

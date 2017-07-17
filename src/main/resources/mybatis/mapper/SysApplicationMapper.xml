@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.dfbase.mapper.SysApplicationMapper" >
+  <resultMap id="BaseResultMap" type="org.dfbase.entity.SysApplication" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+    <result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+    <result column="LOGO" property="logo" jdbcType="VARCHAR" />
+    <result column="APP_TITLE" property="appTitle" jdbcType="VARCHAR" />
+    <result column="APP_KEYWORD" property="appKeyword" jdbcType="VARCHAR" />
+    <result column="APP_COPYRIGHT" property="appCopyright" jdbcType="VARCHAR" />
+    <result column="APP_THEME_ID" property="appThemeId" jdbcType="BIGINT" />
+    <result column="ADMIN_NAME" property="adminName" jdbcType="VARCHAR" />
+    <result column="ADMIN_PHONE_NUM" property="adminPhoneNum" jdbcType="VARCHAR" />
+    <result column="ADMIN_MAIL" property="adminMail" jdbcType="VARCHAR" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="BIGINT" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="BIGINT" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_CODE, APP_NAME, LOGO, APP_TITLE, APP_KEYWORD, APP_COPYRIGHT, APP_THEME_ID, 
+    ADMIN_NAME, ADMIN_PHONE_NUM, ADMIN_MAIL, REMARKS, CREATE_DATE, UPDATE_DATE, CREATE_BY, 
+    UPDATE_BY, DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_application
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_application
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.dfbase.entity.SysApplication" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_application (APP_CODE, APP_NAME, LOGO, 
+      APP_TITLE, APP_KEYWORD, APP_COPYRIGHT, 
+      APP_THEME_ID, ADMIN_NAME, ADMIN_PHONE_NUM, 
+      ADMIN_MAIL, REMARKS, CREATE_DATE, 
+      UPDATE_DATE, CREATE_BY, UPDATE_BY, 
+      DEL_FLAG)
+    values (#{appCode,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{appTitle,jdbcType=VARCHAR}, #{appKeyword,jdbcType=VARCHAR}, #{appCopyright,jdbcType=VARCHAR}, 
+      #{appThemeId,jdbcType=BIGINT}, #{adminName,jdbcType=VARCHAR}, #{adminPhoneNum,jdbcType=VARCHAR}, 
+      #{adminMail,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.dfbase.entity.SysApplication" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appCode != null" >
+        APP_CODE,
+      </if>
+      <if test="appName != null" >
+        APP_NAME,
+      </if>
+      <if test="logo != null" >
+        LOGO,
+      </if>
+      <if test="appTitle != null" >
+        APP_TITLE,
+      </if>
+      <if test="appKeyword != null" >
+        APP_KEYWORD,
+      </if>
+      <if test="appCopyright != null" >
+        APP_COPYRIGHT,
+      </if>
+      <if test="appThemeId != null" >
+        APP_THEME_ID,
+      </if>
+      <if test="adminName != null" >
+        ADMIN_NAME,
+      </if>
+      <if test="adminPhoneNum != null" >
+        ADMIN_PHONE_NUM,
+      </if>
+      <if test="adminMail != null" >
+        ADMIN_MAIL,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appCode != null" >
+        #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="appTitle != null" >
+        #{appTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="appKeyword != null" >
+        #{appKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="appCopyright != null" >
+        #{appCopyright,jdbcType=VARCHAR},
+      </if>
+      <if test="appThemeId != null" >
+        #{appThemeId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhoneNum != null" >
+        #{adminPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="adminMail != null" >
+        #{adminMail,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.dfbase.entity.SysApplication" >
+    update sys_application
+    <set >
+      <if test="appCode != null" >
+        APP_CODE = #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null" >
+        APP_NAME = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="appTitle != null" >
+        APP_TITLE = #{appTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="appKeyword != null" >
+        APP_KEYWORD = #{appKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="appCopyright != null" >
+        APP_COPYRIGHT = #{appCopyright,jdbcType=VARCHAR},
+      </if>
+      <if test="appThemeId != null" >
+        APP_THEME_ID = #{appThemeId,jdbcType=BIGINT},
+      </if>
+      <if test="adminName != null" >
+        ADMIN_NAME = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhoneNum != null" >
+        ADMIN_PHONE_NUM = #{adminPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="adminMail != null" >
+        ADMIN_MAIL = #{adminMail,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.dfbase.entity.SysApplication" >
+    update sys_application
+    set APP_CODE = #{appCode,jdbcType=VARCHAR},
+      APP_NAME = #{appName,jdbcType=VARCHAR},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      APP_TITLE = #{appTitle,jdbcType=VARCHAR},
+      APP_KEYWORD = #{appKeyword,jdbcType=VARCHAR},
+      APP_COPYRIGHT = #{appCopyright,jdbcType=VARCHAR},
+      APP_THEME_ID = #{appThemeId,jdbcType=BIGINT},
+      ADMIN_NAME = #{adminName,jdbcType=VARCHAR},
+      ADMIN_PHONE_NUM = #{adminPhoneNum,jdbcType=VARCHAR},
+      ADMIN_MAIL = #{adminMail,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=BIGINT},
+      UPDATE_BY = #{updateBy,jdbcType=BIGINT},
+      DEL_FLAG = #{delFlag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
